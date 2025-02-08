@@ -53,7 +53,7 @@ const Controls = () => {
           type="text"
           value={input}
           onChange={handleInputChange}
-          className="p-2 border rounded-md w-full"
+          className="p-2 border rounded-md w-full text-black"
           placeholder="e.g., 12, 8, 5, 7"
         />
       </div>
@@ -83,7 +83,7 @@ const Controls = () => {
           id="algorithm"
           value={algorithm}
           onChange={(e) => setAlgorithm(e.target.value)}
-          className="p-2 border rounded-md"
+          className="p-2 border rounded-md text-black"
         >
           <option value="bubbleSort">Bubble Sort</option>
           <option value="selectionSort">Selection Sort</option>
@@ -102,8 +102,9 @@ const Controls = () => {
           id="speed"
           type="number"
           value={delay}
+          placeholder="500"
           onChange={(e) => setDelay(Number(e.target.value))}
-          className="w-16 p-2 border rounded-md"
+          className="w-16 p-2 border rounded-md text-black"
         />
       </div>
 

@@ -1,14 +1,13 @@
-import React, { useState, useEffect, useRef } from "react";
-import Controls from "./components/controls";
-import Sidebar from "./components/sidebar";
+import "./app.css"
 import "./index.css";
+import React, { useState, useEffect, useRef } from "react";
+import Sidebar from "./components/sidebar";
 import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
 
 const App = () => {
   const [randomText, setRandomText] = useState("ALGOVISION");
   const [showSidebar, setShowSidebar] = useState(false);
   const targetText = "ALGOVISION";
-  const [aspectRatio, setAspectRatio] = useState(1);
   const touchStartX = useRef(0);
 
   useEffect(() => {
@@ -33,18 +32,6 @@ const App = () => {
     };
 
     randomizeText();
-
-    //aspect ratio
-    const calculateAspectRatio = () => {
-      const width = window.innerWidth;
-      const height = window.innerHeight;
-      setAspectRatio(width / height);
-    };
-    window.addEventListener("resize", calculateAspectRatio);
-    calculateAspectRatio();
-    return () => {
-      window.removeEventListener("resize", calculateAspectRatio);
-    };
   }, []);
 
   //swipe start
@@ -70,29 +57,21 @@ const App = () => {
   };
 
   return (
-    <div
-      className="flex h-screen"
+    <div className="fixed inset-0 h-full w-full flex items-center justify-center"
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
     >
       <Sidebar show={showSidebar} />
-      <div className="flex-1 p-4 md:p-8 overflow-hidden">
+      <div className="flex-1 p-4">
         <div
-          className="min-h-full flex flex-col items-center justify-center bg-gray-100"
+          className="flex flex-col items-center justify-center "
           style={{
-            minHeight: "100vh",
             padding: "0",
             backgroundColor: "#f3f4f6",
           }}
         >
-          <div
-            className="bg-white p-6 rounded-lg shadow-lg w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl"
-            style={{
-              width: `${aspectRatio * 100}%`,
-              height: `${100 / aspectRatio}%`,
-            }}
-          >
+          <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl mx-[1rem]">
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-center">{randomText}</h1>
             <p className="text-lg sm:text-xl md:text-2xl mb-4 text-center">Welcome to AlgoVision, where algorithms come to life!</p>
             <p className="text-sm sm:text-base md:text-lg text-gray-500 mb-4 text-center">Explore various sorting algorithms through interactive visualizations.</p>
@@ -133,7 +112,7 @@ const App = () => {
       </div>
       <button
         onClick={() => setShowSidebar(!showSidebar)}
-        className="fixed left-0 top-4 bg-blue-500 text-white p-4 rounded-r-full sm:hidden"
+        className="fixed left-0 top-4 bg-blue-500 text-white p-4 rounded-r-full"
       >
         {showSidebar ? "Close Sidebar" : "Open Sidebar"}
       </button>

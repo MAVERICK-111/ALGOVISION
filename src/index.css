@@ -6,7 +6,7 @@ html,
 body {
   height: 100%;
   margin: 0;
-  overflow: hidden; /* Prevent scrolling */
+  background-color: rgb(243, 244, 246);
   width: 100%;
 }
 
@@ -20,14 +20,9 @@ body {
   box-sizing: border-box;
 }
 
-#root {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
 
 h1 {
-  font-size: 4vw; /* Scalable font size based on viewport width */
+  font-size: 4vw;
 }
 
 .container {
@@ -36,11 +31,6 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  transform: scale(0.95); /* Apply scale to the container */
+  transform: scale(0.95);
   transform-origin: center;
-}
-
-html,
-body {
-  overflow-x: hidden;
 }
