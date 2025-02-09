@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Controls from "../components/controls";
 
-const AlgorithmPage = () => {
+const AlgorithmPage = ({ setShowSidebar, showSidebar }) => {
   const { algorithm } = useParams();
   const [selectedAlgorithm, setSelectedAlgorithm] = useState(algorithm || 'bubbleSort');
-  
+
   useEffect(() => {
     setSelectedAlgorithm(algorithm);
   }, [algorithm]);
@@ -51,8 +51,8 @@ const AlgorithmPage = () => {
 
   return (
     <div className="p-4">
-      <h1 className="text-3xl font-bold text-center">{algorithmsInfo[selectedAlgorithm].title}</h1>
-      <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+      <h1 className="mt-16 sm:mt-2 text-3xl font-bold text-center">{algorithmsInfo[selectedAlgorithm].title}</h1>
+      <div className="mt-4 sm:mt-7 grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="bg-white p-6 rounded-lg shadow-lg"><Controls algorithm={selectedAlgorithm} /></div>
         <div className="bg-white p-6 rounded-lg shadow-lg">{renderAlgorithmInfo()}</div>
       </div>

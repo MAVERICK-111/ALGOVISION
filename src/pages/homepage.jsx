@@ -1,12 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
-import Sidebar from "../components/sidebar2";
 import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 
 const HomePage = () => {
     const [randomText, setRandomText] = useState("ALGOVISION");
-    const [showSidebar, setShowSidebar] = useState(false);
     const targetText = "ALGOVISION";
-    const touchStartX = useRef(0);
 
     useEffect(() => {
         //title
@@ -34,28 +31,8 @@ const HomePage = () => {
         randomizeText();
     }, []);
 
-    const handleTouchStart = (e) => {
-        touchStartX.current = e.touches[0].clientX;
-    };
-
-    const handleTouchEnd = (e) => {
-        const touchEndX = e.changedTouches[0].clientX;
-        const swipeThreshold = 50;
-        if (touchEndX - touchStartX.current > swipeThreshold) {
-        setShowSidebar(true);
-        }
-        if (touchStartX.current - touchEndX > swipeThreshold) {
-        setShowSidebar(false);
-        }
-    };
-
     return (
-        <div
-        className="fixed inset-0 h-full w-full flex items-center justify-center"
-        onTouchStart={handleTouchStart}
-        onTouchEnd={handleTouchEnd}
-        >
-        <Sidebar show={showSidebar} />
+        <div className="fixed inset-0 h-full w-full flex items-center justify-center">
         <div className="flex-1 p-4">
             <div
             className="flex flex-col items-center justify-center"
@@ -109,12 +86,6 @@ const HomePage = () => {
             </div>
             </div>
         </div>
-        <button
-            onClick={() => setShowSidebar(!showSidebar)}
-            className="fixed left-0 top-4 bg-blue-500 text-white p-4 rounded-r-full"
-        >
-            {showSidebar ? "Close Sidebar" : "Open Sidebar"}
-        </button>
         </div>
     );
 };
