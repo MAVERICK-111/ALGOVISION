@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { bubbleSort, heapSort, insertionSort, selectionSort, mergeSort, quickSort } from "./algorithms";
 import BarChart from "./barchart";
 
@@ -42,6 +42,13 @@ const Controls = () => {
     }
   };
 
+  useEffect(() => {
+    if (algorithm) {
+      setArray([]);
+      setInput("");
+    }
+  }, [algorithm]);
+
   return (
     <div className="mb-4">
       <div className="mb-4">
@@ -62,36 +69,17 @@ const Controls = () => {
         <button
           onClick={handleGenerateArray}
           disabled={sorting}
-          className="px-4 py-2 bg-blue-500 text-white rounded-lg"
+          className="px-4 py-2 bg-blue-500 text-white rounded-lg transform transition-transform duration-300 hover:scale-105 focus:scale-105"
         >
           Generate Array
         </button>
         <button
           onClick={handleSort}
           disabled={sorting || array.length === 0}
-          className="px-4 py-2 bg-green-500 text-white rounded-lg"
+          className="px-4 py-2 bg-green-500 text-white rounded-lg transform transition-transform duration-300 hover:scale-105 focus:scale-105"
         >
           Start Sorting
         </button>
-      </div>
-
-      <div className="mb-4 flex space-x-2">
-        <label htmlFor="algorithm" className="text-xl">
-          Choose Algorithm:
-        </label>
-        <select
-          id="algorithm"
-          value={algorithm}
-          onChange={(e) => setAlgorithm(e.target.value)}
-          className="p-2 border rounded-md text-black"
-        >
-          <option value="bubbleSort">Bubble Sort</option>
-          <option value="selectionSort">Selection Sort</option>
-          <option value="insertionSort">Insertion Sort</option>
-          <option value="mergeSort">Merge Sort</option>
-          <option value="quickSort">Quick Sort</option>
-          <option value="heapsort">Heap Sort</option>
-        </select>
       </div>
 
       <div className="space-x-2 flex items-center mb-4">
