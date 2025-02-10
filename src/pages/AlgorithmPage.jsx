@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Controls from "../components/controls";
+import { motion } from "motion/react";
 
-const AlgorithmPage = ({ setShowSidebar, showSidebar }) => {
+const AlgorithmPage = ({ showSidebar }) => {
   const { algorithm } = useParams();
   const [selectedAlgorithm, setSelectedAlgorithm] = useState(algorithm || 'bubbleSort');
 
@@ -49,12 +50,37 @@ const AlgorithmPage = ({ setShowSidebar, showSidebar }) => {
     return <p>Algorithm not found.</p>;
   };
 
+  const contentClass = showSidebar
+    ? "transition-all duration-300 ease-in-out transform md:ml-64 md:max-w-[calc(100%-16rem)]"
+    : "transition-all duration-300 ease-in-out md:max-w-full";
+
   return (
-    <div className="p-4">
-      <h1 className="mt-16 sm:mt-2 text-3xl font-bold text-center">{algorithmsInfo[selectedAlgorithm].title}</h1>
-      <div className="mt-4 sm:mt-7 grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="bg-white p-6 rounded-lg shadow-lg"><Controls algorithm={selectedAlgorithm} /></div>
-        <div className="bg-white p-6 rounded-lg shadow-lg">{renderAlgorithmInfo()}</div>
+    <div className={`p-4 mt-3 ${contentClass}`}>
+      <motion.h1
+        className="mt-16 sm:mt-2 text-3xl font-bold text-center"
+        initial={{ y: "-100%", opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ type: "spring", stiffness: 120, damping: 25 }}
+      >
+        {algorithmsInfo[selectedAlgorithm].title}
+      </motion.h1>
+      <div className="mt-4 sm`:mt-7 grid grid-cols-1 md:grid-cols-2 gap-4">
+        <motion.div 
+          className="bg-white p-6 rounded-lg shadow-lg"
+          initial={{ x: "-100%", opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ type: "spring", stiffness: 120, damping: 25 }}
+        >
+          <Controls algorithm={selectedAlgorithm} />
+        </motion.div>
+        <motion.div 
+          className="bg-white p-6 rounded-lg shadow-lg"
+          initial={{ x: "100%", opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ type: "spring", stiffness: 120, damping: 25 }}
+        >
+          {renderAlgorithmInfo()}
+        </motion.div>
       </div>
     </div>
   );

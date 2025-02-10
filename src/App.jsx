@@ -18,7 +18,7 @@ const App = () => {
         <Sidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} handleTouchStart={handleTouchStart} handleTouchEnd={handleTouchEnd}/>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/:algorithm" element={<AlgorithmPage />} />
+          <Route path="/:algorithm" element={<AlgorithmPage setShowSidebar={setShowSidebar} showSidebar={showSidebar} />} />
         </Routes>
       </div>
     </Router>

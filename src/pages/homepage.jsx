@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
+import { motion } from "motion/react";
 import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 
 const HomePage = () => {
@@ -41,7 +42,12 @@ const HomePage = () => {
                 backgroundColor: "#f3f4f6",
             }}
             >
-            <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl mx-[1rem]">
+            <motion.div 
+                className="bg-white p-6 rounded-lg shadow-lg w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl mx-[1rem]"
+                initial={{ opacity: 0, y: "-100%" }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ type: "spring", stiffness: 120, damping: 25 }}
+            >
                 <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-center">
                 {randomText}
                 </h1>
@@ -83,7 +89,7 @@ const HomePage = () => {
                     </a>
                 </div>
                 </footer>
-            </div>
+            </motion.div>
             </div>
         </div>
         </div>

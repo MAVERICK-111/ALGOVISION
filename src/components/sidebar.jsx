@@ -27,7 +27,7 @@ const Sidebar = ({showSidebar, setShowSidebar, handleTouchStart, handleTouchEnd}
       )}
 
       <div
-        className={`fixed left-0 top-0 h-full bg-gray-800 text-white transition-transform transform w-64 z-50 ${showSidebar ? "translate-x-0" : "-translate-x-full"}`}
+        className={`fixed left-0 top-0 h-full bg-gray-800 text-white transition-transform duration-300 ease-in-out transform w-64 z-50 ${showSidebar ? "translate-x-0" : "-translate-x-full"}`}
       >
         <div className="p-4 pt-20">
           <div className="space-y-4">
