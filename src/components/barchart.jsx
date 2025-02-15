@@ -1,32 +1,27 @@
 import React from "react";
+import { BarChart as RechartBarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer } from "recharts";
 
-const BarChart = ({ array, delay }) => {
+const BarChart = ({ array, delay, highlightedBars }) => {
   if (!Array.isArray(array) || array.length === 0) {
     return null;
   }
+  
+  const data = array.map((value,index) => ({
+    name: value,
+    value: value,
+  }))
 
   return (
-    <div className="flex justify-center mb-4 space-x-2">
-      {array.map((value, index) => (
-        <div
-          key={index}
-          className="relative"
-          style={{
-            height: `${value * 10}px`,
-            width: "30px",
-            marginRight: "2px",
-            backgroundColor: "#4B9CD3",
-            transition: `all ${delay / 1000}s ease-in-out`,
-          }}
-        >
-          <span
-            className="absolute inset-0 flex justify-center items-center text-white font-bold"
-            style={{ top: "50%", transform: "translateY(-50%)" }}
-          >
-            {value}
-          </span>
-        </div>
-      ))}
+    <div className="flex justify-center mb-4 "style={{ height: 'auto' }}>
+      <ResponsiveContainer width="100%" height={300}>
+        <RechartBarChart data={data} margin={{ top: 10, right: 30, left: -20, bottom: 0 }}>
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="name" />
+          <YAxis />
+          <Tooltip />
+          <Bar dataKey="value" fill="#4B9CD3" animationDuration={delay} />
+        </RechartBarChart>
+      </ResponsiveContainer>
     </div>
   );
 };

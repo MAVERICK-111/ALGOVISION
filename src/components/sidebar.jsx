@@ -2,11 +2,12 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { ScrollArea } from "@/components/ui/scroll-area"
 
-const Sidebar = ({showSidebar, setShowSidebar, handleTouchStart, handleTouchEnd}) => {
+const Sidebar = ({showSidebar, setShowSidebar, handleTouchStart, handleTouchEnd, setAlgorithm}) => {
   const navigate = useNavigate();
 
-  const handleAlgorithmSelect = (algorithm) => {
-    navigate(`/${algorithm}`);
+  const handleAlgorithmSelect = (algorithm,type) => {
+    setAlgorithm(algorithm);
+    navigate(`/${type}/${algorithm}`);
     setShowSidebar(false);
   };
   const handleHomeClick = () => {
@@ -37,45 +38,63 @@ const Sidebar = ({showSidebar, setShowSidebar, handleTouchStart, handleTouchEnd}
             >
               Home
             </button>
+            {/*Sorting*/}
             <p className="text-gray-500 text-center mb-4">Sorting Algorithms</p>
-            <ScrollArea className="space-y-1 overflow-y-auto h-[calc(100vh-6rem)]">
+            <ScrollArea className="space-y-1 overflow-y-auto h-[calc(50vh-3rem)]">
               <button
-                onClick={() => handleAlgorithmSelect("bubbleSort")}
+                onClick={() => handleAlgorithmSelect("bubbleSort","sorts")}
                 className="px-4 py-2 bg-transparent text-white rounded-lg w-full"
               >
                 Bubble Sort
               </button>
               <button
-                onClick={() => handleAlgorithmSelect("selectionSort")}
+                onClick={() => handleAlgorithmSelect("selectionSort","sorts")}
                 className="px-4 py-2 bg-transparent text-white rounded-lg w-full"
               >
                 Selection Sort
               </button>
               <button
-                onClick={() => handleAlgorithmSelect("insertionSort")}
+                onClick={() => handleAlgorithmSelect("insertionSort","sorts")}
                 className="px-4 py-2 bg-transparent text-white rounded-lg w-full"
               >
                 Insertion Sort
               </button>
               <button
-                onClick={() => handleAlgorithmSelect("mergeSort")}
+                onClick={() => handleAlgorithmSelect("mergeSort","sorts")}
                 className="px-4 py-2 bg-transparent text-white rounded-lg w-full"
               >
                 Merge Sort
               </button>
               <button
-                onClick={() => handleAlgorithmSelect("quickSort")}
+                onClick={() => handleAlgorithmSelect("quickSort","sorts")}
                 className="px-4 py-2 bg-transparent text-white rounded-lg w-full"
               >
                 Quick Sort
               </button>
               <button
-                onClick={() => handleAlgorithmSelect("heapSort")}
+                onClick={() => handleAlgorithmSelect("heapSort","sorts")}
                 className="px-4 py-2 bg-transparent text-white rounded-lg w-full"
               >
                 Heap Sort
               </button>
             </ScrollArea>
+{/*             
+            {/*Searching* /}
+            <p className="text-gray-500 text-center mt-8 mb-4">Search Algorithms</p>
+            <ScrollArea className="space-y-1 overflow-y-auto h-[calc(50vh-3rem)]">
+              <button
+                onClick={() => handleAlgorithmSelect("binarySearch", "searches")}
+                className="px-4 py-2 bg-transparent text-white rounded-lg w-full"
+              >
+                Binary Search
+              </button>
+              <button
+                onClick={() => handleAlgorithmSelect("linearSearch", "searches")}
+                className="px-4 py-2 bg-transparent text-white rounded-lg w-full"
+              >
+                Linear Search
+              </button>
+            </ScrollArea> */}
           </div>
         </div>
       </div>

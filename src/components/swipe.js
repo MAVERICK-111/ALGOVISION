@@ -12,7 +12,7 @@ const useSwipe = (onSwipeOpen, onSwipeClose) => {
 
   const handleTouchEnd = (e) => {
     touchEndX.current = e.changedTouches[0].clientX;
-    const swipeThreshold = 50;
+    const swipeThreshold = 100;
     if (isSwiping) {
       if (touchEndX.current - touchStartX.current > swipeThreshold) onSwipeOpen();
       if (touchStartX.current - touchEndX.current > swipeThreshold) onSwipeClose();

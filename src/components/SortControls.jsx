@@ -2,12 +2,11 @@ import React, { useState, useEffect } from "react";
 import { bubbleSort, heapSort, insertionSort, selectionSort, mergeSort, quickSort } from "./algorithms";
 import BarChart from "./barchart";
 
-const Controls = () => {
+const SortControls = ({algorithm}) => {
   const [input, setInput] = useState("");
   const [array, setArray] = useState([]);
   const [delay, setDelay] = useState(500);
   const [sorting, setSorting] = useState(false);
-  const [algorithm, setAlgorithm] = useState("bubbleSort");
 
   const handleInputChange = (e) => {
     setInput(e.target.value);
@@ -96,9 +95,11 @@ const Controls = () => {
         />
       </div>
 
-      {array.length > 0 && <BarChart array={array} delay={delay} />}
+      {array.length > 0 && (
+        <BarChart array={array} delay={delay} />
+      )}
     </div>
   );
 };
 
-export default Controls;
+export default SortControls;

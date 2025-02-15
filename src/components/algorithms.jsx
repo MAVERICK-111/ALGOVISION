@@ -1,6 +1,8 @@
 // Delay function to simulate animation delay
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
+/*-------------------------------------SORTS-------------------------------------*/
+
 // Bubble Sort
 export const bubbleSort = async (array, setArray, delayTime, completeSort) => {
   let arr = [...array];
@@ -168,3 +170,5 @@ export const heapSort = async (array, setArray, delayTime, completeSort) => {
   await sort();
   completeSort();
 };
+
+/*-------------------------------------SEARCHS-------------------------------------*/
