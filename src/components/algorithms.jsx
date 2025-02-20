@@ -172,3 +172,101 @@ export const heapSort = async (array, setArray, delayTime, completeSort) => {
 };
 
 /*-------------------------------------SEARCHS-------------------------------------*/
+
+// Linear Search
+export const linearSearch = async (array, callback, delayTime, completeSearch, targetNumber) => {
+  let arr = [...array];
+  let found = false;
+  for (let i = 0; i < arr.length; i++) {
+    callback(arr, i, arr[i] === targetNumber);
+    await delay(delayTime);
+    
+    if (arr[i] === targetNumber) {
+      callback(arr, i, true);
+      found = true;
+      break;
+    }
+  }
+  if(!found) {
+    alert(`${targetNumber} not found`);
+    callback(arr,null,false);
+  }
+  completeSearch();
+};
+
+// Binary Search
+export const binarySearch = async (array, callback, delayTime, completeSearch, targetNumber) => {
+  let arr = [...array];
+  let left = 0;
+  let right = arr.length - 1;
+  let found = false;
+
+  while (left <= right) {
+    const middle = Math.floor((left + right) / 2);
+    callback(arr, middle, arr[middle] === targetNumber, left, right, middle,);
+    await delay(delayTime);
+
+    if (arr[middle] === targetNumber) {
+      callback(arr, middle, true, null, null, middle);
+      found = true;
+      break;
+    } else if (arr[middle] < targetNumber) {
+      left = middle + 1;
+    } else {
+      right = middle - 1;
+    }
+  }
+  if(!found) {
+    alert(`${targetNumber} not found`);
+    callback(arr,null,false);
+  }
+  completeSearch();
+};
+
+// Jump Search
+export const jumpSearch = async (array, callback, delayTime, completeSearch, targetNumber) => {
+  let arr = [...array];
+  const n = arr.length;
+  let step = Math.floor(Math.sqrt(n));
+  let prev = 0;
+  let found = false;
+
+  if (n === 0) {
+    alert('Array is empty');
+    completeSearch();
+    return;
+  }
+
+  // Jump phase
+  while (arr[Math.min(step, n) - 1] < targetNumber) {
+    prev = step;
+    step += Math.floor(Math.sqrt(n));
+    
+    callback(arr, Math.min(step, n) - 1, false);
+    await delay(delayTime);
+    
+    if (prev >= n) {
+      alert(`${targetNumber} not found`);
+      completeSearch();
+      return;
+    }
+  }
+
+  // Linear search phase
+  for (let i = prev; i < Math.min(step, n); i++) {
+    callback(arr, i, arr[i] === targetNumber);
+    await delay(delayTime);
+    
+    if (arr[i] === targetNumber) {
+      callback(arr, i, true);
+      found = true;
+      completeSearch();
+      return;
+    }
+  }
+  if(!found) {
+      alert(`${targetNumber} not found`);
+      callback(arr,null,false);
+    }
+  completeSearch();
+};

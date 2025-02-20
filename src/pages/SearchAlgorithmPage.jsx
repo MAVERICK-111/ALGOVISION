@@ -1,7 +1,7 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import SortControls from "../components/SortControls";
-import { motion } from "motion/react";
+import SearchControls from "../components/SearchControls";
+import { motion } from "framer-motion";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { SiJavascript, SiPython, SiC } from "react-icons/si";
 import { FiCopy, FiCheck } from "react-icons/fi";
@@ -13,7 +13,7 @@ import { cpp } from "@codemirror/lang-cpp";
 import { xcodeLight, xcodeLightInit } from '@uiw/codemirror-theme-xcode';
 import { isMobile, isTablet } from 'react-device-detect';
 
-const SortingAlgorithmPage = ({ showSidebar, setAlgorithm }) => {
+const SearchAlgorithmPage = ({ showSidebar, setAlgorithm }) => {
   const { algorithm: paramAlgorithm } = useParams();
   const [language, setLanguage] = useState("javascript");
   const [copied, setCopied] = useState(false);
@@ -23,8 +23,8 @@ const SortingAlgorithmPage = ({ showSidebar, setAlgorithm }) => {
   }, [paramAlgorithm, setAlgorithm]);
 
   useEffect(() => {
-    window.scrollTo(0,0);
-  },[paramAlgorithm]);
+      window.scrollTo(0,0);
+    },[paramAlgorithm]);
 
   useEffect(() => {
     if (copied) {
@@ -87,7 +87,7 @@ const SortingAlgorithmPage = ({ showSidebar, setAlgorithm }) => {
     const toggleDropdown = () => {
       setIsOpen(!isOpen);
     };
-
+    
     return (
       <div className="w-full">
         <button
@@ -106,19 +106,19 @@ const SortingAlgorithmPage = ({ showSidebar, setAlgorithm }) => {
         )}
       </div>
     );
-  }; 
+  };  
 
   const contentClass = showSidebar
-    ? "transition-all duration-300 ease-in-out transform sm:ml-64 sm:max-w-[calc(100%-16rem)]"
-    : "transition-all duration-300 ease-in-out sm:max-w-full";
+    ? "transition-all duration-300 ease-in-out transform md:ml-64 md:max-w-[calc(100%-16rem)]"
+    : "transition-all duration-300 ease-in-out md:max-w-full";
   const gridColsClass = isMobile
-    ? "grid-cols-1"
-    : isTablet
-    ? "grid-cols-1"
-    :"grid-cols-2";
+      ? "grid-cols-1"
+      : isTablet
+      ? "grid-cols-1"
+      :"grid-cols-2";
 
   return (
-    <div className={`p-4 min-h-screen flex flex-col ${contentClass} `}>
+    <div className={`p-4 min-h-screen flex flex-col ${contentClass}`}>
       <motion.h1
         className="mt-16 sm:mt-2 text-3xl font-bold text-center"
         initial={{ y: "-100%", opacity: 0 }}
@@ -129,22 +129,22 @@ const SortingAlgorithmPage = ({ showSidebar, setAlgorithm }) => {
       </motion.h1>
       <div className={`mt-3 sm:mt-7 grid ${gridColsClass} gap-4 flex-grow`}>
         <motion.div
-          className="bg-white p-6 rounded-lg shadow-lg flex-1"
+          className="bg-white p-6 rounded-lg shadow-lg flex-1 overflow-y-auto md:h-[calc(100vh-6.5rem)]"
           initial={{ x: "-100%", opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ type: "spring", stiffness: 120, damping: 25 }}
         >
-          <SortControls algorithm={paramAlgorithm} />
+          <SearchControls algorithm={paramAlgorithm} />
         </motion.div>
         <motion.div
-          className="bg-white p-6 rounded-lg shadow-lg flex-1 overflow-y-auto sm:h-[calc(100vh-6.5rem)]"
+          className="bg-white p-6 rounded-lg shadow-lg flex-1 overflow-y-auto md:h-[calc(100vh-6.5rem)]"
           initial={{ x: "100%", opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ type: "spring", stiffness: 120, damping: 25 }}
         >
           <div className="mt-0 mb-2">{renderAlgorithmInfo()}</div>
-          <HowToUseDropdown />
-          <div className="mt-2 mb-2 bg-blue-500 text-white rounded-lg shadow-lg flex items-center justify-between">
+          <HowToUseDropdown />          
+          <div className="mt-2 mb-2 bg-blue-500 text-white rounded-lg shadow-md flex items-center justify-between">
             <div className="flex space-x-2">
               <button
                 onClick={() => setLanguage("javascript")}
@@ -170,7 +170,7 @@ const SortingAlgorithmPage = ({ showSidebar, setAlgorithm }) => {
               >
                 <SiC size={24} />
               </button>
-            </div>  
+            </div>
             <CopyToClipboard
               text={algorithmsInfo[paramAlgorithm]?.code[language]}
               onCopy={() => setCopied(true)}
@@ -178,13 +178,13 @@ const SortingAlgorithmPage = ({ showSidebar, setAlgorithm }) => {
               <button
                 style={{
                   padding: "8px 16px",
-                  color: copied ? "#90EE90":"#fff",
+                  color: copied ? "#90EE90" : "#fff",
                   border: "none",
                   borderRadius: "4px",
                   cursor: "pointer",
                 }}
               >
-                {copied ? (<FiCheck size={20} />):(<FiCopy size={20} />)}
+                {copied ? <FiCheck size={20} /> : <FiCopy size={20} />}
               </button>
             </CopyToClipboard>
           </div>
@@ -195,4 +195,4 @@ const SortingAlgorithmPage = ({ showSidebar, setAlgorithm }) => {
   );
 };
 
-export default SortingAlgorithmPage;
+export default SearchAlgorithmPage;

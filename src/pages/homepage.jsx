@@ -55,7 +55,7 @@ const HomePage = () => {
                 Welcome to AlgoVision, where algorithms come to life!
                 </p>
                 <p className="text-sm sm:text-base md:text-lg text-gray-500 mb-4 text-center">
-                Explore various sorting algorithms through interactive visualizations.
+                Explore various algorithms through interactive visualizations.
                 </p>
                 <footer className="text-center mt-8 text-gray-600">
                 <p>Created by Piyush Patil</p>

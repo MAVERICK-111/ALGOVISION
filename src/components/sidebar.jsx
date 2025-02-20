@@ -40,7 +40,7 @@ const Sidebar = ({showSidebar, setShowSidebar, handleTouchStart, handleTouchEnd,
             </button>
             {/*Sorting*/}
             <p className="text-gray-500 text-center mb-4">Sorting Algorithms</p>
-            <ScrollArea className="space-y-1 overflow-y-auto h-[calc(50vh-3rem)]">
+            <ScrollArea className="space-y-1 overflow-y-auto xl:flex-1 h-[calc(50vh-7.5rem)]">
               <button
                 onClick={() => handleAlgorithmSelect("bubbleSort","sorts")}
                 className="px-4 py-2 bg-transparent text-white rounded-lg w-full"
@@ -78,10 +78,10 @@ const Sidebar = ({showSidebar, setShowSidebar, handleTouchStart, handleTouchEnd,
                 Heap Sort
               </button>
             </ScrollArea>
-{/*             
-            {/*Searching* /}
-            <p className="text-gray-500 text-center mt-8 mb-4">Search Algorithms</p>
-            <ScrollArea className="space-y-1 overflow-y-auto h-[calc(50vh-3rem)]">
+            
+            {/*Searching*/}
+            <p className="text-gray-500 text-center mb-2">Search Algorithms</p>
+            <ScrollArea className="space-y-1 overflow-y-auto xl:flex-1 h-[calc(50vh-7.5rem)]">
               <button
                 onClick={() => handleAlgorithmSelect("binarySearch", "searches")}
                 className="px-4 py-2 bg-transparent text-white rounded-lg w-full"
@@ -94,7 +94,13 @@ const Sidebar = ({showSidebar, setShowSidebar, handleTouchStart, handleTouchEnd,
               >
                 Linear Search
               </button>
-            </ScrollArea> */}
+              <button
+                onClick={() => handleAlgorithmSelect("jumpSearch", "searches")}
+                className="px-4 py-2 bg-transparent text-white rounded-lg w-full"
+              >
+                Jump Search
+              </button>
+            </ScrollArea>
           </div>
         </div>
       </div>

@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import HomePage from "./pages/homepage";
 import SortingAlgorithmPage from "./pages/SortingAlgorithmPage";
+import SearchAlgorithmPage from "./pages/SearchAlgorithmPage";
 import Sidebar from "./components/sidebar";
 import useSwipe from "./components/swipe";
 
@@ -26,6 +27,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/sorts/:algorithm" element={<SortingAlgorithmPage setShowSidebar={setShowSidebar} showSidebar={showSidebar} setAlgorithm={setAlgorithm} algorithm={algorithm} />} />
+          <Route path="/searches/:algorithm" element={<SearchAlgorithmPage setShowSidebar={setShowSidebar} showSidebar={showSidebar} setAlgorithm={setAlgorithm} algorithm={algorithm} />} />
         </Routes>
       </div>
     </Router>
